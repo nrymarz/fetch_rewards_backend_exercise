@@ -10,12 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_14_202408) do
+ActiveRecord::Schema.define(version: 2021_09_15_182502) do
 
   create_table "payers", force: :cascade do |t|
     t.string "name"
     t.integer "points"
-    t.datetime "time"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -25,6 +24,7 @@ ActiveRecord::Schema.define(version: 2021_09_14_202408) do
     t.integer "points"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "time"
   end
 
 end
