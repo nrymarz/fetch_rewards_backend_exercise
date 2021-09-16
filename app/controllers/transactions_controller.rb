@@ -16,7 +16,7 @@ class TransactionsController < ApplicationController
     end
 
     def index
-        render json: Transaction.all, include:{payer: {only: :name}}, except:[:created_at,:updated_at,:id,:payer_id]
+        render json: Transaction.all
     end
 
     private
