@@ -1,14 +1,68 @@
 <HTML>
     <head>
         <script>
-            const form = document.querySelector('form')
+            document.addEventListener("DOMContentLoaded",function(){
+                const totalPointsHeader = document.querySelector('#total-points')
+                function updatePoints(){
+                    fetch('http://localhost:3000/points')
+                    .then(res => res.json())
+                    .then(json =>{
+                        let totalPoints = json.map(p => p.points).reduce(( prev,curr) => prev + curr)
+                        totalPointsHeader.innerHTML = `Points:${totalPoints}`
+                    })
+                }
+                updatePoints()
+
+                const tform = document.querySelector('#transaction-form')
+                tform.addEventListener('submit',(e)=>{
+                    e.preventDefault()
+                    const data = {
+                        transaction:{
+                            payer: tform.querySelector('#payer').value,
+                            points: tform.querySelector('#points').value,
+                            timestamp: tform.querySelector('#time').value
+                        }
+                    }
+                    fetch('http://localhost:3000/transactions', {method:"POST", body:JSON.stringify(data),headers: {'Accept': 'application/json','Content-Type': 'application/json'}})
+                        .then(res => res.json())
+                        .then(json => console.log(json))
+                        .then(updatePoints)
+                    
+                })
+
+                const sform = document.querySelector('#spend-form')
+                sform.addEventListener('submit',e=>{
+                    e.preventDefault()
+                    const data = {
+                        points: sform.querySelector('#points').value
+                    }
+                    fetch('http://localhost:3000/spend', {method:"POST", body:JSON.stringify(data),headers: {'Accept': 'application/json','Content-Type': 'application/json'}})
+                        .then(res => res.json())
+                        .then(json => console.log(json))
+                        .then(updatePoints)
+                })        
+            })
         </script>
     </head>
     <body>
         <h1>Add Transaction</h1>
-        <form>
-            Payer:<input type=text>
-
+        <form id='transaction-form'>
+            Payer:<input type=text id='payer'><br>
+            Points:<input type=number step=50 value=0 id='points'><br>
+            Time:<input type=datetime-local id='time'><br>
+            <input type="submit">
         </form>
+
+        <hr>
+
+        <h1>Spend Points</h1>
+        <form id='spend-form'>
+            Points:<input type=number step=50 value=0 id='points'><br>
+            <input type="submit">
+        </form>
+
+        <hr>
+
+        <h1 id='total-points'>Points:</h1>
     </body>
 </HTML>

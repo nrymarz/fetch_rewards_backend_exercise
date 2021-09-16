@@ -12,11 +12,16 @@ class TransactionsController < ApplicationController
         else
             render json: {error:"Unable to create transaction"}
         end
-
     end
 
     def index
         render json: Transaction.all
+    end
+
+    def spend
+        byebug
+        spent = Transaction.spend(params.require(:points))
+        render json: spent 
     end
 
     private
