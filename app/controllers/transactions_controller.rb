@@ -18,12 +18,6 @@ class TransactionsController < ApplicationController
         render json: Transaction.all
     end
 
-    def spend
-        byebug
-        spent = Transaction.spend(params.require(:points))
-        render json: spent 
-    end
-
     private
 
     def transaction_params

@@ -3,12 +3,14 @@
         <script>
             document.addEventListener("DOMContentLoaded",function(){
                 const totalPointsHeader = document.querySelector('#total-points')
+                const pointsJson = document.querySelector('#points-json')
                 function updatePoints(){
                     fetch('http://localhost:3000/points')
                     .then(res => res.json())
                     .then(json =>{
                         let totalPoints = json.map(p => p.points).reduce(( prev,curr) => prev + curr)
                         totalPointsHeader.innerHTML = `Points:${totalPoints}`
+                        pointsJson.innerHTML = JSON.stringify(json)
                     })
                 }
                 updatePoints()
@@ -64,5 +66,6 @@
         <hr>
 
         <h1 id='total-points'>Points:</h1>
+        <p id="points-json"></p>
     </body>
 </HTML>

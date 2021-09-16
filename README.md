@@ -1,24 +1,10 @@
 # README
+## Starting the Server
+Run 'bundle install' to install the dependencies before running the server. To start the rails server run 'rails s' in the console.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Testing the backend with the SPA
+To test the backend I made a Singe Page Application which has forms for adding new transactions and spending points. To use the page for testing make sure to run the server and open 'index.html' located in the root directory of this application. You can open the console for viewing the responses after submitting the forms. The SPA uses JS for submitting forms without reloading. 
 
-Things you may want to cover:
+## Manual Testing
+### Adding Transactions
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
