@@ -13,8 +13,8 @@ You can manually test the API by making requests to the API endpoints.
 To add a transaction send a POST request to 'http://localhost:3000/transactions' with a body of stringified JSON data in the form of...
 {transaction:
     {
-        payer: string
-        points: integer
+        payer: string,
+        points: integer,
         timestamp: datetime
     }
 }
